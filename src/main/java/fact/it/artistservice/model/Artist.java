@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document(collection = "timetables")
+@Document(collection = "artists")
 public class Artist {
 
     @Id

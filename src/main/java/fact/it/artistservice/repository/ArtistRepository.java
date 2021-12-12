@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface ArtistRepository extends MongoRepository<Artist, String> {
-    List<Artist> findTimetableByEvent(String eventName);
-    List<Artist> findTimetableByArtist(String artistName);
+    List<Artist> findArtistsByEvent(String eventName);
+    List<Artist> findArtistsByArtist(String artistName);
 }
