@@ -39,14 +39,30 @@ public class ArtistController {
     }
 
     @GetMapping("/artists/{artistName}")
-    public List<Artist> getArtistByArtist(@PathVariable String artistName){
+    public List<Artist> getArtistsByArtist(@PathVariable String artistName){
         return artistRepository.findArtistsByArtist(artistName);
+    }
+
+    @GetMapping("/artists/{artistName}/event/{eventName}")
+    public Artist getArtistByArtistAndEvent(@PathVariable String artistName, @PathVariable String eventName){
+        return artistRepository.findArtistByArtistAndEvent(artistName, eventName);
     }
 
     @PostMapping("/artists")
     public Artist addArtist(@RequestBody Artist artist){
         artistRepository.save(artist);
-
         return artist;
+    }
+
+    @PutMapping("/artists")
+    public Artist updateArtist(@RequestBody Artist updatedArtist){
+        Artist retrievedArtist = artistRepository.findArtistByArtistAndEvent(updatedArtist.getArtist(), updatedArtist.getEvent());
+
+        retrievedArtist.setHour(updatedArtist.getHour());
+        retrievedArtist.setMinute(updatedArtist.getMinute());
+
+        artistRepository.save(retrievedArtist);
+
+        return retrievedArtist;
     }
 }
