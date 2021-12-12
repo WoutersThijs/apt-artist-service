@@ -3,6 +3,7 @@ package fact.it.artistservice.controller;
 import fact.it.artistservice.model.Artist;
 import fact.it.artistservice.repository.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
@@ -64,5 +65,17 @@ public class ArtistController {
         artistRepository.save(retrievedArtist);
 
         return retrievedArtist;
+    }
+
+    @DeleteMapping("/artists/{artistName}/event/{eventName}")
+    public ResponseEntity deleteArtist(@PathVariable String artistName, @PathVariable String eventName){
+        Artist artist = artistRepository.findArtistByArtistAndEvent(artistName, eventName);
+
+        if(artist != null){
+            artistRepository.delete(artist);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
