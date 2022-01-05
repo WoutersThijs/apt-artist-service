@@ -18,16 +18,9 @@ public class ArtistController {
     @PostConstruct
     public void fillDB(){
         if(artistRepository.count() == 0){
-            artistRepository.save(new Artist("SuperFest 2021", "Noisia", 20, 00));
-            artistRepository.save(new Artist("SuperFest 2021", "Sub Focus", 21, 30));
-            artistRepository.save(new Artist("SuperFest 2021", "Madux", 23, 0));
-
-            artistRepository.save(new Artist("Bumble 2022", "Teddy Killerz", 20, 00));
-            artistRepository.save(new Artist("Bumble 2022", "Dimension", 21, 30));
-            artistRepository.save(new Artist("Bumble 2022", "Break", 23, 0));
-
             artistRepository.save(new Artist("Event1", "Artist1",21, 0));
             artistRepository.save(new Artist("Event2", "Artist1",0, 0));
+
             artistRepository.save(new Artist("Event1", "Artist2",22, 30));
             artistRepository.save(new Artist("EventTBD", "ArtistTBD",0, 0));
         }
