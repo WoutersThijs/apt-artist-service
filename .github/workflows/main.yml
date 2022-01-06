@@ -1,0 +1,30 @@
+name: Build, test and deliver container
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Java 11 build, test, deliver container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v1
+        
+      - name: Set up JDK 11
+        uses: actions/setip-java@v1
+        with:
+          java-version: 11
+      
+      - name: Start MongoDB for integration test
+        uses: supercharge/mongodb-github-action@1.3.0
+        with:
+          mongodb-version: 4.2
+          
+      - name: Build, test and package project
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=WoutersThijs_apt-artist-service
