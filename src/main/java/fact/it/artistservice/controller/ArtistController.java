@@ -29,7 +29,6 @@ public class ArtistController {
         System.out.println("B22 test: " + artistRepository.findArtistsByEvent("Bumble 2022").size());
 
         System.out.println("Noisia test: " + artistRepository.findArtistsByArtist("Noisia").size());
-        System.out.println("Teddy Killerz test: " + artistRepository.findArtistsByArtist("Teddy Killerz").size());
     }
 
     @GetMapping("/artists/event/{eventName}")
