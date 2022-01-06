@@ -66,10 +66,10 @@ spec:
             cpu: 0.2
             memory: "200Mi"
         env:                    # Environment variables supplied to the Pod
-#         - name: MONGODB_HOST
-#           value: ""
-#         - name: MONGODB_PORT
-#           value: ""
+        - name: MONGODB_HOST
+          value: "artist-service-mongo"
+        - name: MONGODB_PORT
+          value: "27017"
 ---
 apiVersion: v1                   # API version
 kind: Service                    # Type of the kubernetes resource
